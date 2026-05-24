@@ -1,0 +1,40 @@
+# Updated PyRadiomics parameter file for CT radiomics robustness study.
+# Use this same file for phantom and Lung1 extraction.
+#
+# Important wording for thesis:
+# - This workflow is IBSI-aligned because settings are fixed and documented.
+# - It is not formally IBSI-validated unless benchmark reference values are tested.
+
+imageType:
+  Original: {}
+
+featureClass:
+  firstorder: []
+  glcm: []
+  glrlm: []
+  glszm: []
+  gldm: []
+  ngtdm: []
+  shape: []
+
+setting:
+  # CT discretization
+  # Fixed bin width preserves the physical HU scale and keeps discretization constant.
+  binWidth: 25
+
+  # CT intensity handling
+  normalize: false
+
+  # Internal PyRadiomics resegmentation range used during feature computation.
+  # Keep this fixed across phantom and Lung1.
+  # This is separate from the external HU mask-refinement step in the phantom code.
+  resegmentRange: [-700, 2000]
+
+  # 3D feature extraction
+  force2D: false
+  correctMask: true
+
+  # Geometry standardization
+  # Keep this fixed across all experiments.
+  resampledPixelSpacing: [1, 1, 1]
+  interpolator: sitkBSpline
